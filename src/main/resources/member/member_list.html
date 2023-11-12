@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html th:replace="~{member/base :: mainLayout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원 목록</title>
+</head>
+<body>
+<section>
+    <h2>회원 목록</h2>
+    <hr>
+    <div class="list-group">
+        <div th:each="m : ${members}" class="list-group-item list-group-item-action d-flex justify-content-between">
+        <a th:href="@{/member/{id}(id=${m.id})}" th:text="${m.name}" class="text-decoration-none">홍길동</a>
+            <a class="btn btn-sm btn-close" th:href="@{/member/del/{id}(id=${m.id})}"></a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,27 @@
+#MemberApiTest.http
+### 전체 회원 정보 조회
+GET http://localhost:8080/api/member
+Accept: application/json
+### 특정 회원 조회
+GET http://localhost:8080/api/member/1
+### 회원 삭제
+DELETE http://localhost:8080/api/member/1
+### 회원 등록
+POST http://localhost:8080/api/member
+Content-Type: application/json
+
+{
+"id": 0,
+"name": "name",
+"email": "email"
+}
+
+### 회원 수정
+PUT http://localhost:8080/api/member
+Content-Type: application/json
+
+{
+  "id" : 0,
+  "name": "name",
+  "email": "email"
+｝
