@@ -1,5 +1,6 @@
-package com.ajs.demo.jpa.member;
+package com.ajs.demo.jpa.member.ExceptionHandler;
 
+import com.ajs.demo.jpa.member.Entity.MemberApiStatus;
 import lombok.Getter;
 
 @Getter

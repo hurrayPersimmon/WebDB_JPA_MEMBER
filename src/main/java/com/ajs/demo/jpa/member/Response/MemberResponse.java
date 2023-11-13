@@ -1,8 +1,7 @@
-package com.ajs.demo.jpa.member;
+package com.ajs.demo.jpa.member.Response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 //메세지 빌더
@@ -10,7 +9,7 @@ import lombok.Getter;
 @Getter
 public class MemberResponse {
     //스웨거에 업로드하기 위함.
-    @Schema(description="요청 경로",example="/member/{id}")
+    @Schema(description="요청 경로",example= "/member/{id}")
     private final String path;
     @Schema(description="에러 유형",example="API_ERROR, VALIDATION_ERROR")
     private final String error;

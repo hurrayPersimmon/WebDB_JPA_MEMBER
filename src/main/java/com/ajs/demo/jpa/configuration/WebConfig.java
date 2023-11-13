@@ -1,4 +1,4 @@
-package com.ajs.demo.jpa.test;
+package com.ajs.demo.jpa.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -9,6 +9,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         //registry.addViewController("/").setViewName("member");
-        registry.addRedirectViewController("/","/member/list");
+        registry.addRedirectViewController("/", "/member/list");
     }
 }

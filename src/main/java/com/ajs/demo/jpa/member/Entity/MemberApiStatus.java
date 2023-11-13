@@ -1,4 +1,4 @@
-package com.ajs.demo.jpa.member;
+package com.ajs.demo.jpa.member.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

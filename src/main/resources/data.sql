@@ -1,13 +1,10 @@
-insert into student(name) values('홍길동');
-insert into student(name) values('이순신');
-insert into student(name) values('김길동');
+-- Insert data into the "member" table
+insert into member(username, email) values('김민서', 'rahel337@naver.com');
+insert into member(username, email) values('감만세', 'naminya1107@gachon.ac.kr');
+insert into member(username, email) values('입민서', 'namin2ya@gachon.ac.kr');
 
-insert into score(student_id, subject, score) values(1, '국어', 100);
-insert into score(student_id, subject, score) values(1, '영어', 90);
-insert into score(student_id, subject, score) values(1, '수학', 80);
-insert into score(student_id, subject, score) values(2, '국어', 70);
-insert into score(student_id, subject, score) values(2, '영어', 60);
-insert into score(student_id, subject, score) values(2, '수학', 50);
-insert into score(student_id, subject, score) values(3, '국어', 40);
-insert into score(student_id, subject, score) values(3, '영어', 30);
+-- Insert data into the "memberInfo" table
+insert into MEMBER_INFO(id, member_id, phone_Number, job) values(1, 1, '010-9793-8115', 'STUDENT');
+insert into MEMBER_INFO(id, member_id, phone_Number, job) values(2, 2, '010-1234-1234', 'NONE');
+insert into MEMBER_INFO(id, member_id, phone_Number, job) values(3, 3, '010-9999-9996', 'PROFESSOR');
 

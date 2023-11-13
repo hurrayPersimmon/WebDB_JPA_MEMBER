@@ -1,5 +1,9 @@
-package com.ajs.demo.jpa.member;
+package com.ajs.demo.jpa.member.Controller;
 
+import com.ajs.demo.jpa.member.Entity.Member;
+import com.ajs.demo.jpa.member.Entity.MemberInfo;
+import com.ajs.demo.jpa.member.Repository.MemberInfoRepository;
+import com.ajs.demo.jpa.member.Repository.MemberRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +20,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberRepository memberRepository;
+    private final MemberInfoRepository memberInfoRepository;
 
     // 리턴 - void, 요청 경로(디렉토리 포함)와 동일한 뷰 템플릿 호출
     // WebConfig -> addViewControllers() 에서 처리할 수도 있음
@@ -32,21 +37,22 @@ public class MemberController {
 
     // 인자 - query string
     @GetMapping("get")
-    public String getMember1(@RequestParam Integer id, Model model) {
+    public String getMember1(@RequestParam Long id, Model model) {
         model.addAttribute("member", memberRepository.findById(id).orElseThrow());
         return "member/member_info";
     }
 
     // 인자 - path variable
     @GetMapping("{id}")
-    public String getMember2(@PathVariable Integer id, Model model) {
+    public String getMember2(@PathVariable Long id, Model model) {
         model.addAttribute("member", memberRepository.findById(id).orElseThrow());
+        model.addAttribute("memberInfo", memberInfoRepository.findByMemberId(id).orElseThrow());
         return "member/member_info";
     }
 
     // 삭제
     @GetMapping("del/{id}")
-    public String delMember(@PathVariable Integer id) {
+    public String delMember(@PathVariable Long id) {
         memberRepository.deleteById(id);
         return "redirect:/member/list";
     }
@@ -60,7 +66,11 @@ public class MemberController {
         }
         else {
             // @ModelAttribute 사용시 해당 model attribute 가 자동으로 model 에 추가됨.
+            MemberInfo memberInfo = new MemberInfo();
+            m.setMemberInfo(memberInfo);
+            memberInfoRepository.save(memberInfo);
             memberRepository.save(m);
+
             //return "member/member_info";
             return "redirect:/member/list";
         }
