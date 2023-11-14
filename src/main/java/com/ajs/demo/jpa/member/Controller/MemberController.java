@@ -46,7 +46,7 @@ public class MemberController {
     @GetMapping("{id}")
     public String getMember2(@PathVariable Long id, Model model) {
         model.addAttribute("member", memberRepository.findById(id).orElseThrow());
-        model.addAttribute("memberInfo", memberInfoRepository.findByMemberId(id).orElseThrow());
+        model.addAttribute("memberInfo", memberInfoRepository.findByMemberId(id));
         return "member/member_info";
     }
 
@@ -66,9 +66,9 @@ public class MemberController {
         }
         else {
             // @ModelAttribute 사용시 해당 model attribute 가 자동으로 model 에 추가됨.
-            MemberInfo memberInfo = new MemberInfo();
-            m.setMemberInfo(memberInfo);
-            memberInfoRepository.save(memberInfo);
+//            MemberInfo memberInfo = new MemberInfo();
+//            m.setMemberInfo(memberInfo);
+//            memberInfoRepository.save(memberInfo);
             memberRepository.save(m);
 
             //return "member/member_info";

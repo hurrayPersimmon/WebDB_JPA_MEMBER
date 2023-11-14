@@ -1,6 +1,7 @@
 package com.ajs.demo.jpa.member.Entity;
 
 //import com.samskivert.mustache.Mustache;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +15,7 @@ import lombok.*;
 public class MemberInfo {
     // OAS 스키마 정보 제공
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_sequence_generator")
 //    @SequenceGenerator(name = "member_sequence_generator", sequenceName = "member_sequence", allocationSize = 1)
     private Long id;
@@ -24,8 +25,9 @@ public class MemberInfo {
     @Enumerated(EnumType.STRING)
     private Jobs job;
 
-    @OneToOne
-    @JoinColumn(name = "member_id")
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
     private Member member;
 
     public MemberInfo(String phoneNumber , Jobs job) {

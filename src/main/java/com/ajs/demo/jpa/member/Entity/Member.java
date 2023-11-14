@@ -1,6 +1,7 @@
 package com.ajs.demo.jpa.member.Entity;
 
 //import com.samskivert.mustache.Mustache;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -15,7 +16,7 @@ import lombok.*;
 @Entity
 public class Member {
     // OAS 스키마 정보 제공
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
@@ -27,7 +28,8 @@ public class Member {
     private String email;
 
     @ToString.Exclude
-    @OneToOne(mappedBy = "member", cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "member", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private MemberInfo memberInfo;
 
     public Member(String username , String email) {
